@@ -4,9 +4,9 @@ import pytest
 from flask import Flask
 from flask.testing import FlaskClient as TestClient
 from flask_sqlalchemy import SQLAlchemy
-from module_30_ci_linters.homework.hw1.main.app import app as main_app
-from module_30_ci_linters.homework.hw1.main.extensions import db as _db
-from module_30_ci_linters.homework.hw1.main.models import (
+from test-gitlab-ci-python-advanced.main.app import app as main_app
+from test-gitlab-ci-python-advanced.main.extensions import db as _db
+from test-gitlab-ci-python-advanced.main.models import (
     Client,
     ClientParking,
     Parking,
