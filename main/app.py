@@ -71,7 +71,7 @@ def create_client() -> tuple[Response, int]:
 
 
 @app.route("/parkings", methods=["POST"])
-def create_parking() -> tuple[Response | Any, int]:
+def create_parking() -> tuple[Response, int]:
     data = request.json
     required_fields = [
         "address",
@@ -120,7 +120,7 @@ def create_parking() -> tuple[Response | Any, int]:
 
 
 @app.route("/client_parkings", methods=["POST"])
-def client_park_entry() -> tuple[Response | Any, int] | Response | Any:
+def client_park_entry() -> tuple[Response, int]:
     data = request.json
     client_id = data["client_id"]
     parking_id = data["parking_id"]
@@ -149,7 +149,7 @@ def client_park_entry() -> tuple[Response | Any, int] | Response | Any:
 
 
 @app.route("/client_parkings", methods=["DELETE"])
-def client_park_exit() -> tuple[Response | Any, int] | Response | Any:
+def client_park_exit() -> tuple[Response, int]:
     data = request.json
     client_id = data["client_id"]
     parking_id = data["parking_id"]
