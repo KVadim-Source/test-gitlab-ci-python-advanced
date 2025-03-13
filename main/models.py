@@ -1,7 +1,7 @@
 from .extensions import db
 
 
-class Client(db.Model):  # type: ignore[name-defined]
+class Client(db.Model):  # type: ignore
     __tablename__ = "clients"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -20,7 +20,7 @@ class Client(db.Model):  # type: ignore[name-defined]
         }
 
 
-class Parking(db.Model):  # type: ignore[name-defined]
+class Parking(db.Model):  # type: ignore
     __tablename__ = "parking"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -39,7 +39,7 @@ class Parking(db.Model):  # type: ignore[name-defined]
         }
 
 
-class ClientParking(db.Model):  # type: ignore[name-defined]
+class ClientParking(db.Model):  # type: ignore
     __tablename__ = "client_parking"
     __table_args__ = (
         db.UniqueConstraint(
