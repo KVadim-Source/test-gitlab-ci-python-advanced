@@ -37,7 +37,7 @@ jobs:
         run: flake8 main
 
       - name: Run mypy
-        run: mypy . --strict --ignore-missing-imports --exclude main/models.py
+        run: mypy . --strict --ignore-missing-imports --exclude main.models
 
       - name: Run tests
         run: pytest -v tests
