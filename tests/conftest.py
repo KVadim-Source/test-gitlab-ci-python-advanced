@@ -26,7 +26,7 @@ def app() -> Generator[Flask, None, None]:
 
 
 @pytest.fixture
-def client(app) -> Generator[TestClient, None, None]:
+def client(app) -> Generator[TestClient, None, None]:  # type: ignore
     with app.test_client() as client:
         yield client
 
@@ -66,13 +66,13 @@ def test_client_parking(app) -> Generator[Tuple[int, int], None, None]:
 
 @pytest.mark.parametrize("route", ["/clients", "/clients/1"])
 def test_get_routes(
-    client: TestClient, test_client_parking: tuple[int, int], route: str
+    client: TestClient, test_client_parking: tuple[int, int], route: str  # type: ignore
 ) -> None:
     response = client.get(route)
     assert response.status_code == 200
 
 
-def test_create_client(client: TestClient) -> None:
+def test_create_client(client: TestClient) -> None:  # type: ignore
     client_data = {
         "name": "John",
         "surname": "Doe",
@@ -83,13 +83,13 @@ def test_create_client(client: TestClient) -> None:
     assert response.status_code == 201
 
 
-def test_create_client_without_required_fields(client: TestClient) -> None:
+def test_create_client_without_required_fields(client: TestClient) -> None:  # type: ignore
     client_data = {"name": "John"}
     response = client.post("/clients", json=client_data)
     assert response.status_code != 201
 
 
-def test_create_parking(client: TestClient) -> None:
+def test_create_parking(client: TestClient) -> None:  # type: ignore
     parking_data = {
         "address": "Main St",
         "opened": True,
@@ -102,7 +102,7 @@ def test_create_parking(client: TestClient) -> None:
 
 @pytest.mark.parking
 def test_parking_entry(
-    client: TestClient, test_client_parking: tuple[int, int]
+    client: TestClient, test_client_parking: tuple[int, int]  # type: ignore
 ) -> None:
     client_id, parking_id = test_client_parking
 
@@ -123,7 +123,7 @@ def test_parking_entry(
 
 @pytest.mark.parking
 def test_parking_exit(
-    client: TestClient, test_client_parking: tuple[int, int]
+    client: TestClient, test_client_parking: tuple[int, int]  # type: ignore
 ) -> None:
     client_id, parking_id = test_client_parking
 
@@ -151,7 +151,7 @@ def test_parking_exit(
 
 @pytest.mark.parking
 def test_parking_entry_closed(
-    client: TestClient, test_client_parking: tuple[int, int]
+    client: TestClient, test_client_parking: tuple[int, int]  # type: ignore
 ) -> None:
     client_id, parking_id = test_client_parking
 
@@ -166,7 +166,7 @@ def test_parking_entry_closed(
 
 @pytest.mark.parking
 def test_parking_exit_without_entry(
-    client: TestClient, test_client_parking: tuple[int, int]
+    client: TestClient, test_client_parking: tuple[int, int]  # type: ignore
 ) -> None:
     client_id, parking_id = test_client_parking
 
@@ -178,7 +178,7 @@ def test_parking_exit_without_entry(
 
 @pytest.mark.parking
 def test_parking_exit_payment(
-    client: TestClient, test_client_parking: tuple[int, int]
+    client: TestClient, test_client_parking: tuple[int, int]  # type: ignore
 ) -> None:
     client_id, parking_id = test_client_parking
 
