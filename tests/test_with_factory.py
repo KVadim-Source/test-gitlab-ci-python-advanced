@@ -6,7 +6,7 @@ from .factories import ClientFactory, ParkingFactory
 
 
 def test_create_client_with_factory(
-    client: TestClient[None], db: SQLAlchemy
+    client: TestClient, db: SQLAlchemy
 ) -> None:
     initial_clients_count = Client.query.count()
     client_data = ClientFactory.build()
@@ -35,7 +35,7 @@ def test_create_client_with_factory(
 
 
 def test_create_parking_with_factory(
-    client: TestClient[None], db: SQLAlchemy
+    client: TestClient, db: SQLAlchemy
 ) -> None:
     initial_parkings_count = Parking.query.count()
     parking_data = ParkingFactory.build()
