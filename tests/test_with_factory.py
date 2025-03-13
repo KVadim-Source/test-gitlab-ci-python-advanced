@@ -1,9 +1,13 @@
+from flask.testing import FlaskClient as TestClient
+from flask_sqlalchemy import SQLAlchemy
 from module_30_ci_linters.homework.hw1.main.models import Client, Parking
 
 from .factories import ClientFactory, ParkingFactory
 
 
-def test_create_client_with_factory(client, db) -> None:
+def test_create_client_with_factory(
+    client: TestClient, db: SQLAlchemy
+) -> None:
     initial_clients_count = Client.query.count()
     client_data = ClientFactory.build()
 
@@ -30,7 +34,9 @@ def test_create_client_with_factory(client, db) -> None:
         assert response.status_code == 400
 
 
-def test_create_parking_with_factory(client, db) -> None:
+def test_create_parking_with_factory(
+    client: TestClient, db: SQLAlchemy
+) -> None:
     initial_parkings_count = Parking.query.count()
     parking_data = ParkingFactory.build()
 
