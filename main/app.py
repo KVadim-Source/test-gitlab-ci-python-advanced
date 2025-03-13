@@ -1,7 +1,8 @@
 from datetime import datetime
+from typing import Any
 
 import sqlalchemy
-from flask import Flask, jsonify, request
+from flask import Flask, Response, jsonify, request
 
 from .extensions import db
 from .models import Client, ClientParking, Parking
@@ -18,13 +19,13 @@ with app.app_context():
 
 
 @app.route("/clients", methods=["GET"])
-def get_clients():
+def get_clients() -> Response:
     clients = Client.query.all()
     return jsonify([client.to_dict() for client in clients])
 
 
 @app.route("/clients/<int:client_id>", methods=["GET"])
-def get_client(client_id):
+def get_client(client_id: int) -> Any | tuple[Any, int]:
     client = Client.query.get(client_id)
     return (
         jsonify(client.to_dict())
@@ -34,7 +35,7 @@ def get_client(client_id):
 
 
 @app.route("/clients", methods=["POST"])
-def create_client():
+def create_client() -> tuple[Response | Any, int]:
     data = request.json
     required_fields = ["name", "surname", "credit_card", "car_number"]
 
@@ -70,7 +71,7 @@ def create_client():
 
 
 @app.route("/parkings", methods=["POST"])
-def create_parking():
+def create_parking() -> tuple[Response | Any, int]:
     data = request.json
     required_fields = [
         "address",
@@ -119,7 +120,7 @@ def create_parking():
 
 
 @app.route("/client_parkings", methods=["POST"])
-def client_park_entry():
+def client_park_entry() -> tuple[Response | Any, int] | Response | Any:
     data = request.json
     client_id = data["client_id"]
     parking_id = data["parking_id"]
@@ -148,7 +149,7 @@ def client_park_entry():
 
 
 @app.route("/client_parkings", methods=["DELETE"])
-def client_park_exit():
+def client_park_exit() -> tuple[Response | Any, int] | Response | Any:
     data = request.json
     client_id = data["client_id"]
     parking_id = data["parking_id"]
