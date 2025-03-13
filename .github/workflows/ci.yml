@@ -37,7 +37,7 @@ jobs:
         run: flake8 main
 
       - name: Run mypy
-        run: mypy --package . --strict --ignore-missing-imports
+        run: mypy test-gitlab-ci-python-advanced --strict --ignore-missing-imports
 
       - name: Run tests
         run: pytest -v tests
