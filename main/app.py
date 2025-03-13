@@ -20,7 +20,7 @@ with app.app_context():
 @app.route("/clients", methods=["GET"])
 def get_clients() -> Response:
     clients = Client.query.all()
-    return jsonify([client.to_dict() for client in clients])
+    return jsonify([client.to_dict() for client in clients])  # type: ignore
 
 
 @app.route("/clients/<int:client_id>", methods=["GET"])
