@@ -1,7 +1,7 @@
 from typing import Any
 
 import factory
-from factory import Faker as FactoryFaker
+from factory import Faker as FactoryFaker  # type: ignore
 from faker import Faker
 from module_30_ci_linters.homework.hw1.main.extensions import db
 from module_30_ci_linters.homework.hw1.main.models import Client, Parking
@@ -18,10 +18,10 @@ class ClientFactory(factory.alchemy.SQLAlchemyModelFactory):
         model = Client
         sqlalchemy_session = db.session
 
-    name = FactoryFaker("first_name")
-    surname = FactoryFaker("last_name")
-    credit_card: Any = factory.LazyAttribute(lambda x: generate_credit_card())
-    car_number = FactoryFaker("license_plate")
+    name = FactoryFaker("first_name")  # type: ignore
+    surname = FactoryFaker("last_name")  # type: ignore
+    credit_card: Any = factory.LazyAttribute(lambda x: generate_credit_card())  # type: ignore
+    car_number = FactoryFaker("license_plate")  # type: ignore
 
 
 class ParkingFactory(factory.alchemy.SQLAlchemyModelFactory):
@@ -29,9 +29,9 @@ class ParkingFactory(factory.alchemy.SQLAlchemyModelFactory):
         model = Parking
         sqlalchemy_session = db.session
 
-    address = FactoryFaker("address")
-    opened = FactoryFaker("boolean")
-    count_places = FactoryFaker("random_int", min=1, max=100)
-    count_available_places: Any = factory.LazyAttribute(
+    address = FactoryFaker("address")  # type: ignore
+    opened = FactoryFaker("boolean")  # type: ignore
+    count_places = FactoryFaker("random_int", min=1, max=100)  # type: ignore
+    count_available_places: Any = factory.LazyAttribute(  # type: ignore
         lambda o: o.count_places
     )
