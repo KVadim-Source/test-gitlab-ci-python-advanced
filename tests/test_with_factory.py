@@ -1,6 +1,6 @@
 from flask.testing import FlaskClient as TestClient
 from flask_sqlalchemy import SQLAlchemy
-from module_30_ci_linters.homework.hw1.main.models import Client, Parking
+from test-gitlab-ci-python-advanced.main.models import Client, Parking
 
 from .factories import ClientFactory, ParkingFactory
 
