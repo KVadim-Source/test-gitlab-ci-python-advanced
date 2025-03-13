@@ -3,8 +3,8 @@ from typing import Any
 import factory
 from factory import Faker as FactoryFaker  # type: ignore
 from faker import Faker
-from test-gitlab-ci-python-advanced.main.extensions import db
-from test-gitlab-ci-python-advanced.hw1.main.models import Client, Parking
+from main.extensions import db
+from main.models import Client, Parking
 
 fake = Faker()
 
