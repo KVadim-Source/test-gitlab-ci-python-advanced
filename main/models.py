@@ -1,3 +1,5 @@
+from typing import Any, Dict
+
 from .extensions import db
 
 
@@ -10,7 +12,7 @@ class Client(db.Model):  # type: ignore
     credit_card = db.Column(db.String(50))
     car_number = db.Column(db.String(10))
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> Dict[str, Any]:
         return {
             "id": self.id,
             "name": self.name,
@@ -29,7 +31,7 @@ class Parking(db.Model):  # type: ignore
     count_places = db.Column(db.Integer, nullable=False)
     count_available_places = db.Column(db.Integer, nullable=False)
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> Dict[str, Any]:
         return {
             "id": self.id,
             "address": self.address,
@@ -53,7 +55,7 @@ class ClientParking(db.Model):  # type: ignore
     time_in = db.Column(db.DateTime)
     time_out = db.Column(db.DateTime)
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> Dict[str, Any]:
         return {
             "id": self.id,
             "client_id": self.client_id,
