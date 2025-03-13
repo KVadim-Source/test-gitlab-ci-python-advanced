@@ -25,7 +25,7 @@ def get_clients() -> Response:
 
 
 @app.route("/clients/<int:client_id>", methods=["GET"])
-def get_client(client_id: int) -> Any | tuple[Any, int]:
+def get_client(client_id: int) -> tuple[Response, int] | Response:
     client = Client.query.get(client_id)
     return (
         jsonify(client.to_dict())
@@ -35,7 +35,7 @@ def get_client(client_id: int) -> Any | tuple[Any, int]:
 
 
 @app.route("/clients", methods=["POST"])
-def create_client() -> tuple[Response | Any, int]:
+def create_client() -> tuple[Response, int]:
     data = request.json
     required_fields = ["name", "surname", "credit_card", "car_number"]
 
