@@ -28,16 +28,16 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run isort
-        run: isort --check --diff hw1
+        run: isort --check --diff test-gitlab-ci-python-advanced
 
       - name: Run black
-        run: black --check --diff hw1
+        run: black --check --diff test-gitlab-ci-python-advanced
 
       - name: Run flake8
-        run: flake8 hw1
+        run: flake8 test-gitlab-ci-python-advanced
 
       - name: Run mypy
-        run: mypy hw1/ --strict --ignore-missing-imports
+        run: mypy test-gitlab-ci-python-advanced/ --strict --ignore-missing-imports
 
       - name: Run tests
-        run: pytest -v hw1/tests
+        run: pytest -v test-gitlab-ci-python-advanced/tests
