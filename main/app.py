@@ -140,7 +140,7 @@ def client_park_entry() -> tuple[Response, int]:
         db.session.add(client_parking)
         parking.count_available_places -= 1
         db.session.commit()
-        return jsonify(client_parking.to_dict())
+        return jsonify(client_parking.to_dict()), 200
     except sqlalchemy.exc.SQLAlchemyError as e:
         db.session.rollback()
         error_message = f"Parking entry failed: {e}"
@@ -169,7 +169,7 @@ def client_park_exit() -> tuple[Response, int]:
         client_parking.time_out = datetime.now()
         parking.count_available_places += 1
         db.session.commit()
-        return jsonify(client_parking.to_dict())
+        return jsonify(client_parking.to_dict()), 200
     except sqlalchemy.exc.SQLAlchemyError as e:
         db.session.rollback()
         error_message = f"Exit update failed: {e}"
