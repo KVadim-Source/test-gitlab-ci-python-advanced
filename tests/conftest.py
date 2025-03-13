@@ -32,13 +32,13 @@ def client(app) -> Generator[TestClient, None, None]:  # type: ignore
 
 
 @pytest.fixture
-def db(app) -> Generator[SQLAlchemy, None, None]:
+def db(app) -> Generator[SQLAlchemy, None, None]:  # type: ignore
     with app.app_context():
         yield _db
 
 
 @pytest.fixture
-def test_client_parking(app) -> Generator[Tuple[int, int], None, None]:
+def test_client_parking(app) -> Generator[Tuple[int, int], None, None]:  # type: ignore
     with app.app_context():
         client = Client(
             name="John",
