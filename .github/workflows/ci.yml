@@ -37,7 +37,7 @@ jobs:
         run: flake8 main
 
       - name: Run mypy
-        run: mypy . --strict --ignore-missing-imports --show-error-codes --show-column-numbers --show-error-context --pretty
+        run: mypy --package . --strict --ignore-missing-imports
 
       - name: Run tests
         run: pytest -v tests
