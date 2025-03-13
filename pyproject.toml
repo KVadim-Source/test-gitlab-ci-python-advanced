@@ -21,4 +21,4 @@ ignore_missing_imports = true
 plugins = ["sqlmypy"]
 
 [[tool.mypy.overrides]]
-module = "hw1.main.models"
+module = "test-gitlab-ci-python-advanced.main.models"
